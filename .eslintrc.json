@@ -1,6 +1,14 @@
 {
   "extends": [
     "./node_modules/standard/eslintrc.json",
+    "standard-with-typescript",
     "next/core-web-vitals"
-  ]
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
+  }
 }

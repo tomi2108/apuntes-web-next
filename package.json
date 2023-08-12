@@ -9,17 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.4.10",
-    "@types/react": "18.2.20",
-    "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
-    "eslint": "8.47.0",
-    "eslint-config-next": "13.4.13",
     "hast-util-to-string": "^2.0.0",
     "mdast-util-to-hast": "^13.0.1",
     "next": "13.4.13",
-    "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype-katex": "^6.0.3",
@@ -29,11 +23,22 @@
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6",
     "unified": "^10.1.2",
     "uuid-by-string": "^4.0.0"
   },
   "devDependencies": {
-    "standard": "17.1.0"
+    "@types/node": "20.4.10",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.13",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "postcss": "8.4.27",
+    "standard": "17.1.0",
+    "typescript": "5.1.6"
   }
 }

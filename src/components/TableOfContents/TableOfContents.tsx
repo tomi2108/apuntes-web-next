@@ -1,6 +1,5 @@
-import { toString } from 'hast-util-to-string'
+import { type Node, toString } from 'hast-util-to-string'
 import { toHast } from 'mdast-util-to-hast'
-import { useEffect, useState } from 'react'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
@@ -9,14 +8,8 @@ import { unified } from 'unified'
 import generateId from 'uuid-by-string'
 
 const TableOfContents = ({ markdownContent }: { markdownContent: string }) => {
-  const [toc, setToc] = useState<Array<{
-    id: string;
-    title: string;
-    className: string;
-  }> | null>(null)
-
-  useEffect(() => {
-    if (!markdownContent) return
+  const getContent = () => {
+    if (markdownContent === '') return
     const processor = unified()
       .use(remarkParse)
       .use(remarkGfm)
@@ -25,25 +18,25 @@ const TableOfContents = ({ markdownContent }: { markdownContent: string }) => {
 
     const tree = processor.parse(markdownContent)
 
-    const tocNodes = tree.children.filter(
-      (node) => node.type === 'heading' && node.depth <= 2
-    )
-    const tocItems = tocNodes?.map((item: any) => {
-      // @ts-ignore
-      const title = toString(toHast(item))
+    const tocNodes = tree.children.filter(node => node.type === 'heading' && node.depth <= 2)
+
+    const tocItems = tocNodes?.map((item) => {
+      // @ts-expect-error
+      const title = toString(toHast(item) as Node)
       const id = generateId(title)
-      const className = item.depth === 2 ? 'toc-subtitle' : 'toc-title'
-      return { title, id, className }
+      return { title, id, depth: (item as { depth: number }).depth }
     })
-    setToc(tocItems)
-  }, [markdownContent])
+    return tocItems
+  }
+
+  const toc = getContent()
   return (
     <nav className='table-of-contents'>
       <ul>
-        {toc
+        {(toc != null)
           ? toc.map((item) => (
             <li key={item.id}>
-              <a className={item.className} href={`#${item.id}`}>
+              <a href={`#${item.id}`}>
                 {item.title}
               </a>
             </li>

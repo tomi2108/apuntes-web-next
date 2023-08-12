@@ -1,48 +1,18 @@
-import { useEffect, useState } from 'react'
-import rehypeKatex from 'rehype-katex'
-import rehypeStringify from 'rehype-stringify/lib'
-import remarkMath from 'remark-math'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype/lib'
-import { unified } from 'unified'
+import MathIcon from '../MathIcon'
 
-type CardProps = {
-  text: string;
-  icon: string;
-  onClick: (folder: string) => void;
-};
-
-const isSvg = (icon: string): boolean => {
-  return icon.includes('svg')
+interface CardProps {
+  text: string
+  icon: string
 }
 
-const Card = ({ text, onClick, icon }: CardProps) => {
-  const [iconString, setIconString] = useState<string>()
-
-  useEffect(() => {
-    if (isSvg(icon)) return setIconString(icon)
-    const processor = unified()
-      .use(remarkParse)
-      .use(remarkMath, { singleDollarTextMath: true })
-      .use(remarkRehype, { allowDangerousHtml: true })
-      .use(rehypeKatex)
-      .use(rehypeStringify)
-    const tree = processor.parse(icon)
-    const hastTree = processor.runSync(tree)
-    // @ts-ignore
-    setIconString(processor.stringify(hastTree))
-  }, [icon])
-
+const Card = ({ text, icon }: CardProps) => {
   return (
-    <div className='card' onClick={() => onClick(text)}>
-      <div
-        className={`card-image ${isSvg(icon) ? 'svg-image' : ''}`}
-        dangerouslySetInnerHTML={{ __html: iconString || '' }}
-      />
-      <div className='card-name'>
+    <article>
+      <MathIcon icon={icon} />
+      <div>
         <p>{text}</p>
       </div>
-    </div>
+    </article>
   )
 }
 

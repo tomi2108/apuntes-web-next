@@ -3,17 +3,17 @@ import TableOfContents from '@/components/TableOfContents/TableOfContents'
 import { useArticles } from '@/context/ArticleContext'
 import { useEffect, useState } from 'react'
 
-type Props = {
-  params:{ title:string, folder:string }
+interface Props {
+  params: { title: string, folder: string }
 }
 
-export default function Article ({ params }:Props) {
+export default function Article ({ params }: Props) {
   const [content, setContent] = useState<string>('')
-  const { articles } = useArticles()
   const { title, folder } = params
+  const { articles } = useArticles()
 
   useEffect(() => {
-    if (!articles) return
+    if (articles == null) return
     const folderObj = articles.find((article) => article.folder === folder)
     const fileObj = folderObj?.files.find((file) => file.title === title)
     setContent(fileObj?.content as string)

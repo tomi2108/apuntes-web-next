@@ -1,6 +1,6 @@
 import MarkdownRenderer from '@/components/MarkdownRenderer/MarkdownRenderer'
 import TableOfContents from '@/components/TableOfContents/TableOfContents'
-import { useArticles } from '@/context/ArticleContext'
+import { getArticles } from '@/services/articles'
 import { useEffect, useState } from 'react'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export default function Article ({ params }: Props) {
   const [content, setContent] = useState<string>('')
   const { title, folder } = params
-  const { articles } = useArticles()
+  const articles = getArticles()
 
   useEffect(() => {
     if (articles == null) return

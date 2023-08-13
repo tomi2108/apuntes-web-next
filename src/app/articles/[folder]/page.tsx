@@ -1,5 +1,5 @@
 import Card from '@/components/Card/Card'
-import { useArticles } from '@/context/ArticleContext'
+import { getArticles } from '@/services/articles'
 import { parseArticleTitle } from '@/utilts/articles'
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 export default function Articles ({ params }: Props) {
   const { folder } = params
-  const { articles } = useArticles()
+  const articles = getArticles()
 
   const article = articles?.find((a) => a.folder === folder)
 

@@ -2,7 +2,7 @@ import Card from '@/components/Card/Card'
 import { getArticles } from '@/services/articles'
 
 const Subjects = async () => {
-  const articles = await getArticles()
+  const articles = getArticles()
 
   const folders = articles.map((a) => ({ title: a.folder, icon: a.icon }))
 

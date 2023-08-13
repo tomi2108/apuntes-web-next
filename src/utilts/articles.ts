@@ -8,3 +8,5 @@ export const parseArticleTitle = (title: string) => {
   if (1 in words) { words[1] = words[1].charAt(0).toUpperCase() + words[1].slice(1) }
   return words.join(' ')
 }
+
+export const parseParam = (param: string) => param.replaceAll('%20', ' ')

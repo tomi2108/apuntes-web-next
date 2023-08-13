@@ -1,16 +1,18 @@
+import Link from 'next/link'
 import MathIcon from '../MathIcon'
 
 interface CardProps {
   text: string
   icon: string
+  path: string
 }
 
-const Card = ({ text, icon }: CardProps) => {
+const Card = ({ text, icon, path }: CardProps) => {
   return (
     <article>
       <MathIcon icon={icon} />
       <div>
-        <p>{text}</p>
+        <Link href={path}>{text}</Link>
       </div>
     </article>
   )

@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Apuntes de sistemas',
   viewport: {
-    width: 'device-with',
     initialScale: 1
   }
 

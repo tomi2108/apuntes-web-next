@@ -5,7 +5,6 @@ const NavBar = () => {
     <nav>
       <ul>
         <Link href='/'>Materias</Link>
-        <Link href='/articles'>Apuntes</Link>
       </ul>
     </nav>
 

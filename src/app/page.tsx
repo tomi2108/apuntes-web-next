@@ -9,14 +9,10 @@ const Subjects = async () => {
   return (
     <main>
       <section>
-        <Card
-          key={-1}
-          icon='$$\n\\leftarrow\n$$'
-          text='Materias'
-        />
         {
           folders.map((f, index) =>
             <Card
+              path={`/articles/${f.title}`}
               key={index}
               icon={f.icon}
               text={(f.title)}
